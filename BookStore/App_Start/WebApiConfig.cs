@@ -21,6 +21,14 @@ namespace BookStore
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+            name: "Books",
+            routeTemplate: "api/books/{id}",
+            defaults: new { controller = "Books", id = RouteParameter.Optional },
+            constraints: new { id = "/d+" }
+            );
+
+
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings
             .Add(new System.Net.Http.Formatting.RequestHeaderMapping("Accept",
                               "text/html",
