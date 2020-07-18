@@ -13,7 +13,7 @@ namespace BookStore.Controllers
     public class BooksController : ApiController
     {
         JsonHelpers jsonHelper = new JsonHelpers();
-        HttpHelper httpHelper = new HttpHelper();
+
 
         [HttpGet]
         [Route("api/books/")]
@@ -42,11 +42,17 @@ namespace BookStore.Controllers
             {
                 if ((newBook.Author == null) || (newBook.Title == null))
                 {
-                    return httpHelper.ReturnResponseWithMessage(HttpStatusCode.BadRequest, "error : Fields is required");
+                    var mes = string.Format("error : Fields is required");
+                    HttpError error = new HttpError(mes);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.BadRequest, error);
+                    return response;
                 }
                 else if ((null != jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Author == newBook.Author).FirstOrDefault()) || null != jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Title == newBook.Title).FirstOrDefault())
                 {
-                    return httpHelper.ReturnResponseWithMessage(HttpStatusCode.BadRequest, "You cannot add books with the same author and title");
+                    var mes = string.Format("You cannot add books with the same author and title");
+                    HttpError error = new HttpError(mes);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.BadRequest, error);
+                    return response;
                 }
                 var addedBook = jsonHelper.AddBook(newBook);
                 return Request.CreateResponse(HttpStatusCode.Created, addedBook);

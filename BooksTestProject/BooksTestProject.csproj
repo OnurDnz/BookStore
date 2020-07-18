@@ -71,9 +71,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="JsonData\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BookStore\BookStore.csproj">
       <Project>{45F211B5-623C-4CA6-8FA7-F21F839EA2B6}</Project>

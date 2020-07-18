@@ -16,8 +16,9 @@ namespace BookStore.Helpers
 {
     public class JsonHelpers
     {
-        public string jsonFilePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"JsonData\json.json"));
-        //public string jsonFilePath = @"C:\Users\onurd\source\repos\OnurDnz\BookStore\BookStore\JsonData\json.json";
+        //public string jsonFilePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"JsonData\json.json"));
+        public string jsonFilePath = @"C:\Users\onurd\source\repos\OnurDnz\BookStore\BookStore\JsonData\json.json";
+       
         public Book AddBook(Book book)
         {
             var jsonData = File.ReadAllText(jsonFilePath);

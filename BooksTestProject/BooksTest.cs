@@ -14,6 +14,7 @@ namespace BooksTestProject
     public class BooksTest
     {
         BookStore.Controllers.BooksController _controller;
+
         public BooksTest()
         {
             _controller = new BookStore.Controllers.BooksController();
@@ -23,6 +24,7 @@ namespace BooksTestProject
         }
 
         JsonHelpers helpers = new JsonHelpers();
+
         public static string ProjectPath = AppDomain.CurrentDomain.BaseDirectory;
         public static string SolutionPath = ProjectPath.Substring(0, ProjectPath.Length - 27);
         string jsonFilePath = Path.Combine(SolutionPath + @"BookStore\JsonData\json.json");
@@ -37,20 +39,19 @@ namespace BooksTestProject
         [Test]
         public void isDataCountZero_dataCountShouldBeZero_True()
         {
-            var dataCount = helpers.ReadAllBook(jsonFilePath);
-
+            var dataCount = _controller.Get();
             Assert.AreEqual(dataCount.Count == 0, true);
         }
 
         [Test]
-        public void requiredFieldsCheck_ShouldBeReturnBadRequest_ReturnBadRequest()
+        public void checkRequiredFields_ShouldBeReturnBadRequest_ReturnBadRequest()
         {
             var response = _controller.Put(new Book { });
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
         }
 
         [Test]
-        public void requiredFieldsMessageCheck_ShouldBeReturnMessage_ReturnMessage()
+        public void checkRequiredFieldsWithMessage_ShouldBeReturnMessage_VerifyMessage()
         {
             var response = _controller.Put(new Book { });
             var data = response.Content.ReadAsStringAsync();
