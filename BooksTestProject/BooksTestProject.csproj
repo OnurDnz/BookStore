@@ -64,7 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BooksTest.cs" />
+    <Compile Include="Tests\BooksTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

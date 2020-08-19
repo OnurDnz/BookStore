@@ -16,9 +16,9 @@ namespace BookStore.Helpers
 {
     public class JsonHelpers
     {
-        //public string jsonFilePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"JsonData\json.json"));
         public string jsonFilePath = @"C:\Users\onurd\source\repos\OnurDnz\BookStore\BookStore\JsonData\json.json";
-       
+        //Lütfen proje ismine kadar olan kısmı kendi adresiniz ile degiştirin.
+
         public Book AddBook(Book book)
         {
             var jsonData = File.ReadAllText(jsonFilePath);
@@ -42,5 +42,6 @@ namespace BookStore.Helpers
             var newData = jsonData.Remove(1, jsonData.Length - 2);
             File.WriteAllText(filePath, newData);
         }
+
     }
 }

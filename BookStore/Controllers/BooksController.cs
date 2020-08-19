@@ -26,11 +26,11 @@ namespace BookStore.Controllers
         [Route("api/books/")]
         public HttpResponseMessage Get(int id)
         {
-            if (null == jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Id == id).FirstOrDefault())
+            var data = jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Id == id).FirstOrDefault();
+            if (null == data)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Id doesn't exist");
             }
-            var data = jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Id == id).FirstOrDefault();
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
@@ -47,7 +47,7 @@ namespace BookStore.Controllers
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.BadRequest, error);
                     return response;
                 }
-                else if ((null != jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Author == newBook.Author).FirstOrDefault()) || null != jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Title == newBook.Title).FirstOrDefault())
+                else if (null != jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Author == newBook.Author).FirstOrDefault() || null != jsonHelper.ReadAllBook(jsonHelper.jsonFilePath).Where(x => x.Title == newBook.Title).FirstOrDefault())
                 {
                     var mes = string.Format("You cannot add books with the same author and title");
                     HttpError error = new HttpError(mes);

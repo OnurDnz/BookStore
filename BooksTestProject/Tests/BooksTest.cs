@@ -28,8 +28,7 @@ namespace BooksTestProject
         public static string ProjectPath = AppDomain.CurrentDomain.BaseDirectory;
         public static string SolutionPath = ProjectPath.Substring(0, ProjectPath.Length - 27);
         string jsonFilePath = Path.Combine(SolutionPath + @"BookStore\JsonData\json.json");
-        //string jsonFilePath = @"C:\Users\onurd\source\repos\OnurDnz\BookStore\BookStore\JsonData\json.json";
-        
+
         [SetUp]
         public void SetUp()
         {
